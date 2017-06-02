@@ -89,9 +89,15 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 getString(R.string.settings_number_of_kittens_key),
                 getString(R.string.settings_number_of_kittens_default));
 
+        String type = sharedPrefs.getString(
+                getString(R.string.settings_type_key),
+                getString(R.string.settings_type_default)
+        );
+
         Uri baseUri = Uri.parse(REQUEST_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
         uriBuilder.appendQueryParameter("results_per_page", numberOfKittens);
+        uriBuilder.appendQueryParameter("type", type);
 
         return new KittenLoader(this, uriBuilder.toString());
     }

@@ -2,11 +2,18 @@
 xmlns:android="http://schemas.android.com/apk/res/android"
 android:title="@string/settings_title">
 
-<EditTextPreference
-    android:defaultValue="@string/settings_number_of_kittens_default"
-    android:inputType="numberDecimal"
-    android:key="@string/settings_number_of_kittens_key"
-    android:selectAllOnFocus="true"
-    android:title="@string/settings_number_of_kittens_label" />
+    <EditTextPreference
+        android:defaultValue="@string/settings_number_of_kittens_default"
+        android:inputType="numberDecimal"
+        android:key="@string/settings_number_of_kittens_key"
+        android:selectAllOnFocus="true"
+        android:title="@string/settings_number_of_kittens_label" />
+
+    <ListPreference
+        android:defaultValue="@string/settings_type_default"
+        android:entries="@array/settings_type_labels"
+        android:entryValues="@array/settings_type_values"
+        android:key="@string/settings_type_key"
+        android:title="@string/settings_type_label" />
 
 </PreferenceScreen>

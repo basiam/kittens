@@ -8,4 +8,16 @@
     <string name="settings_number_of_kittens_key" translatable="false">number_of_kittens</string>
     <string name="settings_number_of_kittens_default" translatable="false">6</string>
 
+    <string name="settings_type_label">Image Type</string>
+    <string name="settings_type_key" translatable="false">image_type</string>
+    <string name="settings_type_default" translatable="false"></string>
+
+    <string name="settings_type_gif_label">gif</string>
+    <string name="settings_type_gif_value" translatable="false">gif</string>
+
+    <string name="settings_type_png_label">png</string>
+    <string name="settings_type_png_value" translatable="false">png</string>
+
+    <string name="settings_type_jpg_label">jpg</string>
+    <string name="settings_type_jpg_value" translatable="false">jpg</string>
 </resources>
