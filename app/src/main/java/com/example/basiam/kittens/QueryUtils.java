@@ -1,6 +1,5 @@
 package com.example.basiam.kittens;
 
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.Xml;
 
@@ -19,13 +18,12 @@ import java.util.List;
 
 
 /**
- * Helper methods related to requesting and receiving kitten data from USGS.
+ * Helper methods related to requesting and receiving kitten data from API.
  */
 public final class QueryUtils {
 
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
     private static String ns = "";
-    private static String TAG = "QueryUtils";
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -43,6 +41,7 @@ public final class QueryUtils {
 
         URL url = createUrl(stringUrl);
         InputStream xmlResponse = null;
+
         try {
             xmlResponse = makeHttpRequest(url);
         } catch (IOException e) {
@@ -77,8 +76,8 @@ public final class QueryUtils {
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setReadTimeout(10000);
+            urlConnection.setConnectTimeout(15000);
             urlConnection.connect();
 
             // If the request was successful (response code 200),
@@ -104,7 +103,6 @@ public final class QueryUtils {
      * about the first kitten from the input kittenXML string.
      */
     private static List<Kitten> extractFeatureFromXml(InputStream kittenXML) {
-        // If the JSON string is empty or null, then return early.
 
         List<Kitten> kittenList = new ArrayList<Kitten>();
         try {
@@ -116,7 +114,7 @@ public final class QueryUtils {
             kittenXML.close();
 
         } catch (XmlPullParserException |  IOException e) {
-            Log.e(LOG_TAG, "Problem parsing the kitten JSON results", e);
+            Log.e(LOG_TAG, "Problem parsing the kitten XML results", e);
         }
         return kittenList;
     }

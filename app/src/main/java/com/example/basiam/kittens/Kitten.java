@@ -19,8 +19,8 @@ public class Kitten {
         return Uri.parse(mUrl);
     }
 
-    public Double getCuteness() {
-        return 10 * new Random().nextDouble();
+    public int getCuteness() {
+        return new Random().nextInt(11);
     }
 
     @Override

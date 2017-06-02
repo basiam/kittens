@@ -13,14 +13,12 @@ import android.support.v4.content.ContextCompat;
 
 import com.squareup.picasso.Picasso;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
 
 public class KittenAdapter extends ArrayAdapter<Kitten> {
 
-    private static final String LOG_TAG = KittenAdapter.class.getSimpleName();
 
 
     public KittenAdapter(Activity context, ArrayList<Kitten> Kittens) {
@@ -39,8 +37,8 @@ public class KittenAdapter extends ArrayAdapter<Kitten> {
         
 
         TextView cutenessTextView = (TextView) listItemView.findViewById(R.id.cuteness);
-        double cuteness = currentKitten.getCuteness();
-        cutenessTextView.setText(formatCuteness(cuteness));
+        int cuteness = currentKitten.getCuteness();
+        cutenessTextView.setText(String.valueOf(cuteness));
         GradientDrawable cutenessCircle = (GradientDrawable) cutenessTextView.getBackground();
         int cutenessColor = getCutenessColor(currentKitten.getCuteness());
         cutenessCircle.setColor(cutenessColor);
@@ -54,14 +52,10 @@ public class KittenAdapter extends ArrayAdapter<Kitten> {
     }
 
     
-    private String formatCuteness(double cuteness) {
-        DecimalFormat cutenessFormat = new DecimalFormat("0.0");
-        return cutenessFormat.format(cuteness);
-    }
-    private int getCutenessColor(double cuteness) {
+
+    private int getCutenessColor(int cuteness) {
         int cutenessColorResourceId;
-        int cutenessFloor = (int) Math.floor(cuteness);
-        switch (cutenessFloor) {
+        switch (cuteness) {
             case 0:
             case 1:
                 cutenessColorResourceId = R.color.cuteness1;

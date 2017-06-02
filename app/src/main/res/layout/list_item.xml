@@ -21,8 +21,11 @@
 
     <ImageView
         android:id="@+id/image"
-        android:layout_width="50dp"
+        android:paddingLeft="16dp"
+        android:layout_width="100dp"
         android:layout_height="50dp" />
+
+
 
 
 </LinearLayout>
