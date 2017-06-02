@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kittens</string>
+    <string name="no_kittens">No kittens found.</string>
+</resources>
