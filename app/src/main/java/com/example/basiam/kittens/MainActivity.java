@@ -4,7 +4,9 @@ import android.app.LoaderManager;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private KittenAdapter mAdapter;
     private static final int LOADER_ID = 1;
     private static final String REQUEST_URL =
-            "http://thecatapi.com/api/images/get?format=xml&results_per_page=20";
+            "http://thecatapi.com/api/images/get?format=xml";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +84,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<Kitten>> onCreateLoader(int i, Bundle bundle) {
-        KittenLoader loader = new KittenLoader(this, REQUEST_URL);
-        return loader;
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String numberOfKittens = sharedPrefs.getString(
+                getString(R.string.settings_number_of_kittens_key),
+                getString(R.string.settings_number_of_kittens_default));
+
+        Uri baseUri = Uri.parse(REQUEST_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+        uriBuilder.appendQueryParameter("results_per_page", numberOfKittens);
+
+        return new KittenLoader(this, uriBuilder.toString());
     }
 
     @Override
